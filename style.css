@@ -197,6 +197,7 @@ h1, h2, h3, .logo, .text-tech {
 .text-glow {
     background: linear-gradient(to right, var(--accent-cyan), var(--accent-purple));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.4));
 }
@@ -502,14 +503,78 @@ h1, h2, h3, .logo, .text-tech {
 }
 @keyframes onload-anim { to { opacity: 1; transform: scale(1); } }
 
+/* =========================================
+   MENU TOGGLE (MOBILE)
+   ========================================= */
+.menu-toggle {
+    display: none;
+    font-size: 2.2rem;
+    color: var(--text-main);
+    cursor: pointer;
+    z-index: 1001; /* Por encima del panel del menú */
+    transition: color 0.3s ease;
+}
+.menu-toggle:hover {
+    color: var(--accent-cyan);
+}
+
 /* RESPONSIVE */
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background: rgba(3, 5, 10, 0.96);
+        backdrop-filter: blur(20px);
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        transition: right 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 1000;
+        border-left: 1px solid var(--border-color);
+        box-shadow: -10px 0 30px rgba(0,0,0,0.8);
+    }
+    .nav-links.active {
+        right: 0;
+    }
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+    
     .loader-icons { font-size: 2.5rem; gap: 15px; }
     .service-text-cycle { font-size: 1.2rem; }
-    .hero-title { font-size: 3rem; }
-    .hero-buttons { flex-direction: column; width: 100%; }
-    .btn { width: 100%; }
-    .nav-links { display: none; }
+    
+    .hero-title { font-size: 2.8rem; margin-bottom: 20px; }
+    .hero-subtitle { font-size: 1.1rem; padding: 0 10px; }
+    .hero-buttons { flex-direction: column; width: 100%; align-items: center; }
+    .btn { width: 100%; max-width: 320px; justify-content: center; }
+    
     .section-header h2 { font-size: 2.2rem; }
-    .boot-logo { font-size: 2.5rem; }
+    .section-header p { padding: 0 15px; }
+    
+    .services-3-cols { grid-template-columns: 1fr; } /* Force 1 column on mobile */
+    .pro-card { padding: 35px 25px; }
+    .card-icon { font-size: 3rem; margin-bottom: 15px; }
+    
+    .contact h2 { font-size: 2.2rem; }
+    .contact p { padding: 0 15px; font-size: 1rem; }
+    .contact-card { padding: 40px 20px; }
+    .phone-number { font-size: 1.5rem; }
+    .contact-icon { font-size: 3.5rem; }
+}
+
+@media (max-width: 480px) {
+    .nav-links { width: 85%; }
+    .hero-title { font-size: 2.2rem; }
+    .section-header h2 { font-size: 1.8rem; }
+    .contact h2 { font-size: 2.2rem; }
+    .whatsapp-float { width: 55px; height: 55px; font-size: 2rem; bottom: 20px; right: 20px; }
+    .boot-sequence { width: 95%; }
 }

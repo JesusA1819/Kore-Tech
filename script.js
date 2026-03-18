@@ -267,3 +267,33 @@ function initWaveCanvas() {
     }
     animateWaves();
 }
+
+/* =========================================
+   8. MOBILE MENU TOGGLE
+   ========================================= */
+const mobileMenu = document.getElementById('mobile-menu');
+const navLinks = document.querySelector('.nav-links');
+const navLinksItems = document.querySelectorAll('.nav-links a');
+
+if (mobileMenu && navLinks) {
+    mobileMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = mobileMenu.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.replace('bx-menu', 'bx-x');
+        } else {
+            icon.classList.replace('bx-x', 'bx-menu');
+        }
+    });
+
+    // Cerrar el menú al hacer clic en un enlace
+    navLinksItems.forEach(item => {
+        item.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            const icon = mobileMenu.querySelector('i');
+            if(icon.classList.contains('bx-x')) {
+                icon.classList.replace('bx-x', 'bx-menu');
+            }
+        });
+    });
+}
